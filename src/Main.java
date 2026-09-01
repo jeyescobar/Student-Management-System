@@ -1,10 +1,20 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        printMenu();
-        int option = getOption(scanner);
+        do {
+            printMenu();
+
+            int option = getOption(scanner);
+            if (option == 1) {
+                StudentManagment.addStudent(scanner);
+            } else if (option == 2) {
+                StudentManagment.showList();
+            }
+
+        }while(cont(scanner));
     }
 
     public static void printMenu() {
@@ -25,6 +35,7 @@ public class Main {
             try{
                 numberSelected = scanner.nextInt();
                 if (numberSelected >= 1 && numberSelected <= 6) {
+                    scanner.nextLine();
                     return numberSelected;
                 } else{
                     System.out.println("Option doesnt exist\n"+
@@ -39,6 +50,29 @@ public class Main {
             }
         }while(repeat);
         return numberSelected;
+    }
+    public static boolean cont(Scanner scanner){
+        boolean yes = true;
+        char sn = 'n';
+        do{
+            try{
+                System.out.println("Deseas continuar: s/n: ");
+                sn = scanner.next().charAt(0);
+                if(sn == 's'){
+                    return true;
+                }
+                else if (sn == 'n'){
+                    return false;
+                }
+                else{
+                    System.out.println("Introduzca s para Si y n para No");
+                    yes = true;
+                }
+            }catch(InputMismatchException e){
+
+            }
+        }while(yes);
+        return true;
     }
 }
 

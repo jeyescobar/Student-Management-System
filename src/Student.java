@@ -38,4 +38,10 @@ public class Student {
         this.gpa = gpa;
     }
 
+
+    @Override
+    public String toString(){
+        return "ID: " + id + " , Nombre: " + name + " , Major: " + major + " , GPA: " + gpa ;
+    }
+
 }
