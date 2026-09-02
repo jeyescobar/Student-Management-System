@@ -54,6 +54,19 @@ public class StudentManagment {
                 System.out.println(students.get(i));
         }
     }
+        public static void searchStudent(Scanner scanner, ArrayList<Student> students){
+            int id;
+            System.out.println("Enter the ID of the student: ");
+            id = scanner.nextInt();
+            for(int i = 0; i < students.size(); i++){
+                        if(students.get(i).getId() == id){
+                            System.out.println(students.get(i));
+                        }
+                        else{
+                            System.out.println("Estudiante no encontrado");
+                        }
+            }
+        }
 }
 
 

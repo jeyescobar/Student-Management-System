@@ -12,6 +12,8 @@ public class Main {
                 StudentManagment.addStudent(scanner);
             } else if (option == 2) {
                 StudentManagment.showList();
+            }else if(option == 3){
+                StudentManagment.searchStudent(scanner,StudentManagment.students);
             }
 
         }while(cont(scanner));
