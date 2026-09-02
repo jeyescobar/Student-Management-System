@@ -63,10 +63,12 @@ public class StudentManagment {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId() == id) {
                 System.out.println(students.get(i));
-            } else {
-                System.out.println("Student not found");
+                return;
             }
+
+
         }
+        System.out.println("Student not found");
     }
 
     public static void updateStudent(Scanner scanner, ArrayList<Student> students) {
@@ -75,41 +77,69 @@ public class StudentManagment {
         String newMajor;
         double newGPA;
         boolean repeat = false;
+        boolean notFound = true;
 
-            System.out.println("Enter the ID of the student: ");
+        System.out.println("Enter the ID of the student: ");
         id = scanner.nextInt();
-        do{
-            for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getId() == id) {
-                System.out.println("What you want to update? \n" +
-                        "1. Major \n" +
-                        "2. GPA");
-                choice = scanner.nextInt();
-                if (choice == 1) {
-                    scanner.nextLine();
-                    System.out.println("Actual Major: " + students.get(i).getMajor());
-                    System.out.println("New Major: ");
-                    newMajor = scanner.nextLine();
-                    students.get(i).setMajor(newMajor);
-                    System.out.println(students.get(i));
-                    repeat= false;
-                } else if (choice == 2) {
-                    scanner.nextLine();
-                    System.out.println("Actual GPA: " + students.get(i).getGpa());
-                    System.out.println("New GPA: ");
-                    newGPA = scanner.nextDouble();
-                    students.get(i).setGpa(newGPA);
-                    System.out.println("Student Updated: \n" + students.get(i));
-                    repeat = false;
-                } else {
-                    System.out.println("Option doesn't exist");
-                    repeat = true;
-                }
-            }
 
-            }
-        }while (repeat);
+        for (int i = 0; i < students.size(); i++) {
+            do {
+                if (students.get(i).getId() == id) {
+                    notFound = false;
+                    System.out.println("What you want to update? \n" +
+                            "1. Major \n" +
+                            "2. GPA");
+
+                    choice = scanner.nextInt();
+                    if (choice == 1) {
+                        scanner.nextLine();
+                        System.out.println("Actual Major: " + students.get(i).getMajor());
+                        System.out.println("New Major: ");
+                        newMajor = scanner.nextLine();
+                        students.get(i).setMajor(newMajor);
+                        System.out.println(students.get(i));
+                        repeat = false;
+                    } else if (choice == 2) {
+                        scanner.nextLine();
+                        System.out.println("Actual GPA: " + students.get(i).getGpa());
+                        System.out.println("New GPA: ");
+                        newGPA = scanner.nextDouble();
+                        students.get(i).setGpa(newGPA);
+                        System.out.println("Student Updated: \n" + students.get(i));
+                        repeat = false;
+                    } else {
+                        System.out.println("Option doesn't exist");
+                        repeat = true;
+                    }
+                }
+
+
+            } while (repeat);
+        }
+        if (notFound) {
+            System.out.println("Student not Found");
+        }
     }
+
+    public static void deleteStudent(Scanner scanner, ArrayList<Student> students) {
+        int id;
+        boolean notFound = true;
+        System.out.println("Enter the ID of the student: ");
+        id = scanner.nextInt();
+
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == id) {
+                students.remove(i);
+                System.out.println("Student deleted.");
+                notFound = false;
+                return;
+            }
+        }
+        if(notFound){
+            System.out.println("Student not Found");
+        }
+    }
+
 }
 
 

@@ -16,6 +16,8 @@ public class Main {
                 StudentManagment.searchStudent(scanner,StudentManagment.students);
             }else if(option == 4){
                 StudentManagment.updateStudent(scanner, StudentManagment.students);
+            }else if(option == 5){
+                StudentManagment.deleteStudent(scanner,StudentManagment.students);
             }
 
         }while(cont(scanner));
